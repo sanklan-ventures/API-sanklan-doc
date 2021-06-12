@@ -1,7 +1,7 @@
 {
 	"swagger":"2.0",
 	"info":{
-		"description":"API-Sanklan is a collection of APIs.",
+		"description":"API-Sanklan is a collection of APIs. Two things will be provided to you <key> and <secret>.Key could be used as an alternate of Authorization header.But secret needed to be used for generating hash.",
 		"version":"0.0.1",
 		"title":"API-Sanklan",
 		"termsOfService":"http://api-doc.sanklan.com/terms/",
@@ -18,11 +18,7 @@
 	"tags":[
 		{
 		"name":"log",
-		"description":"APIs to save data.",
-		"externalDocs":{
-			"description":"Find out more",
-			"url":"http://api.sanklan.com"
-			}
+		"description":"APIs to save data."
 		}],
 	"schemes":[
 		"https",
@@ -30,7 +26,7 @@
 		],
 	"paths":
 	{
-		"/log/csv":
+		"/log/csv/{dataId}/{hash}":
 		{
 			"put":
 			{
@@ -50,6 +46,20 @@
 				],
 				"parameters":
 				[
+					{
+						"name":"dataId",
+						"in":"path",
+						"description":"Data Id for which you are passing this data",
+						"required":true,
+						"type":"int64"
+					},
+					{
+                                                "name":"hash",
+                                                "in":"path",
+                                                "description":"If it is passed then it will be used for data validation",
+                                                "required":false,
+                                                "type":"string"
+					},
 					{
 						"name":"data",
 						"in":"data",
@@ -100,6 +110,7 @@
 				"write:api":"Write data"
 			}
 		}
+
 	},
 	"definitions":
 	{
