@@ -71,16 +71,36 @@
 				"security":
 				[
 					{
-						"petstore_auth":
+						"apidoc_auth":
 						[
-						"write:pets",
-						"read:pets"
+						"write:api",
+						"read:api"
 						]
 					}
 				]
 			}
 		}
    	},
+	"securityDefinitions":
+	{
+		"api_key":
+		{
+			"type":"apiKey",
+			"name":"Authorization",
+			"in":"header"
+		},
+		"apidoc_auth":
+		{
+			"type":"oauth2",
+			"authorizationUrl":"https://api.sanklan.com/oauth/authorize",
+			"flow":"implicit",
+			"scopes":
+			{
+				"read:api":"Read the data",
+				"write:api":"Write data"
+			}
+		}
+	},
 	"definitions":
 	{
 		"logCsvResponse":
